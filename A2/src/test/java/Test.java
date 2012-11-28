@@ -1,11 +1,23 @@
-import spreadsheet.Expression;
-import spreadsheet.HashTableMap;
-import spreadsheet.Position;
-import spreadsheet.SinglyLinkedListMap;
+import spreadsheet.*;
 
 import static org.junit.Assert.assertTrue;
 
 public class Test {
+
+    @org.junit.Test
+    public void testSpreadsheet() {
+
+        Position p0 = new Position(1, 0);
+        Expression e0 = new Expression("test");
+
+        Spreadsheet map = new Spreadsheet();
+
+        map.set(p0, e0);
+
+        Expression result = map.get(p0);
+
+        assertTrue(result.getValue().equals("test"));
+    }
 
     @org.junit.Test
     public void testLinkedList() {
@@ -25,7 +37,16 @@ public class Test {
     @org.junit.Test
     public void testArrayMap() {
 
+        Position p = new Position(1, 0);
+        Expression e = new Expression("test");
 
+        DynamicArrayMap map = new DynamicArrayMap();
+
+        map.insert(p, e);
+
+        Expression result = map.lookup(p);
+
+        assertTrue(result.getValue().equals("test"));
     }
 
     @org.junit.Test

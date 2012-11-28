@@ -20,7 +20,7 @@ public class HashTableMap {
     public void insert(final Position key, final Expression value) {
 
         int hash = key.hashCode();
-        int index = (hash & 0x7FFFFFFF) % BUCKET_SIZE;
+        int index = (hash % BUCKET_SIZE);
 
         Node entry = buckets[index];
         buckets[index] = new Node(key, value, entry);
@@ -29,7 +29,7 @@ public class HashTableMap {
     public Expression lookup(final Position key) {
 
         int hash = key.hashCode();
-        int index = (hash & 0x7FFFFFFF) % BUCKET_SIZE;
+        int index = (hash % BUCKET_SIZE);
 
         for (Node entry = buckets[index]; entry != null; entry = entry.getNext()) {
             if ((entry.getHashCode() == hash) && entry.getKey().isEqualTo(key)) {
