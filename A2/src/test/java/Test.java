@@ -66,6 +66,7 @@ public class Test {
 
         assertTrue(result0.getValue().equals("test"));
         assertTrue(result1.getValue().equals("tset"));
-        assertTrue(result2.getValue().equals("tset"));
+
+        assert(result2 == null);
     }
 }
