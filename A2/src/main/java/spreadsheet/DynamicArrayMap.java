@@ -13,9 +13,13 @@ public class DynamicArrayMap {
 
         int length = list.length;
 
-        list = new Node[length + 1];
+        Node[] newList = new Node[length + 1];
 
-        list[length] = new Node(key, value);
+        System.arraycopy(list, 0, newList, 0, list.length);
+
+        newList[length] = new Node(key, value);
+
+        this.list = newList;
     }
 
     public Expression lookup(final Position key) {

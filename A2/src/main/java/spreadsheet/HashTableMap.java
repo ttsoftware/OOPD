@@ -22,6 +22,17 @@ public class HashTableMap {
         int hash = key.hashCode();
         int index = (hash % BUCKET_SIZE);
 
+        if (index >= BUCKET_SIZE) {
+            // we somehow need to resize the map
+            BUCKET_SIZE += (BUCKET_SIZE * 1.75);
+
+            System.out.println("\nNew bucket size: " + BUCKET_SIZE + "\n");
+
+            Node[] newBuckets = new Node[BUCKET_SIZE];
+            System.arraycopy(buckets, 0, newBuckets, 0, buckets.length);
+            buckets = newBuckets;
+        }
+
         Node entry = buckets[index];
         buckets[index] = new Node(key, value, entry);
     }
@@ -31,7 +42,18 @@ public class HashTableMap {
         int hash = key.hashCode();
         int index = (hash % BUCKET_SIZE);
 
+        System.out.println(index);
+        System.out.println(hash);
+        System.out.println("START\n");
+
+        for (Node entry : buckets) {
+
+            System.out.println(entry.getValue().getValue());
+            System.out.println("---");
+        }
+
         for (Node entry = buckets[index]; entry != null; entry = entry.getNext()) {
+
             if ((entry.getHashCode() == hash) && entry.getKey().isEqualTo(key)) {
                 return entry.getValue();
             }

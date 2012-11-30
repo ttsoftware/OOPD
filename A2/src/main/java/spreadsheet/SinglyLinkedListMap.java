@@ -3,21 +3,15 @@ package spreadsheet;
 public class SinglyLinkedListMap {
 
     private Node root;
-    private Node current = null;
 
     public SinglyLinkedListMap() {
     }
 
     public void insert(final Position key, final Expression value) {
 
-        if (current == null) {
-
-            root = new Node(key, value);
-            current = root;
-        }
-        else {
-            current.setNext(new Node(key, value));
-        }
+        Node current = new Node(key, value);
+        current.setNext(root);
+        root = current;
     }
 
     public Expression lookup(final Position key) {
