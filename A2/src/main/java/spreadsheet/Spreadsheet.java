@@ -2,10 +2,10 @@ package spreadsheet;
 
 public class Spreadsheet {
 
-    private HashTableMap map;
+    private SinglyLinkedListMap map;
 
     public Spreadsheet() {
-        map = new HashTableMap();
+        map = new SinglyLinkedListMap();
     }
 
     public void set(final Position position, final Expression expression) {

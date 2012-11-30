@@ -35,7 +35,6 @@ public class Test {
 
         Expression result2 = map.get(new Position(1, 1));
 
-        /*
         Expression result3 = map.get(new Position(2, 1));
         Expression result4 = map.get(new Position(3, 1));
         Expression result5 = map.get(new Position(4, 1));
@@ -49,11 +48,9 @@ public class Test {
         Expression result13 = map.get(new Position(12, 1));
         Expression result14 = map.get(new Position(13, 1));
         Expression result15 = map.get(new Position(14, 1));
-        */
 
         assertTrue(result2.getValue().equals("penis"));
 
-        /*
         assertTrue(result3.getValue().equals("test1"));
         assertTrue(result4.getValue().equals("test2"));
         assertTrue(result5.getValue().equals("test3"));
@@ -67,7 +64,6 @@ public class Test {
         assertTrue(result13.getValue().equals("test11"));
         assertTrue(result14.getValue().equals("test12"));
         assertTrue(result15.getValue().equals("test13"));
-        */
 
         long end = System.currentTimeMillis();
         System.out.println("Execution time was " + (end - start) + " ms.");

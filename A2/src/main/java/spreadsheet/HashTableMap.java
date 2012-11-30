@@ -20,7 +20,9 @@ public class HashTableMap {
     public void insert(final Position key, final Expression value) {
 
         int hash = key.hashCode();
-        int index = (hash % BUCKET_SIZE);
+        int index = (hash & 0x7FFFFFFF) % BUCKET_SIZE;
+
+        System.out.println("Insert index: " + index);
 
         if (index >= BUCKET_SIZE) {
             // we somehow need to resize the map
@@ -40,7 +42,7 @@ public class HashTableMap {
     public Expression lookup(final Position key) {
 
         int hash = key.hashCode();
-        int index = (hash % BUCKET_SIZE);
+        int index = (hash & 0x7FFFFFFF) % BUCKET_SIZE;
 
         System.out.println(index);
         System.out.println(hash);
