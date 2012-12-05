@@ -19,7 +19,7 @@ public class AConst extends Expression {
 
     @Override
     public boolean toBoolean() {
-        return (constant == 1);
+        return (constant != 0);
     }
 
     @Override
