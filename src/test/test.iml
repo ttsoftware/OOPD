@@ -17,6 +17,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="junit:junit-dep:4.10" level="project" />
+    <orderEntry type="library" name="diku" level="project" />
   </component>
 </module>
 
