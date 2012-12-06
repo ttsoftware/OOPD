@@ -10,34 +10,35 @@ package spreadsheet;
 public class CellReference extends Expression {
 
     private final Spreadsheet spreadsheet;
-    private final Position position;
+    private final Position key;
+    private final Expression value;
 
-
-    public CellReference(final Spreadsheet spreadsheet, final Position position) {
+    public CellReference(final Spreadsheet spreadsheet, final Position key) {
         this.spreadsheet = spreadsheet;
-        this.position = position;
+        this.key = key;
+        this.value = spreadsheet.get(key);
     }
 
     @Override
     public boolean toBoolean() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return value.toBoolean();
     }
 
     @Override
     public int toInt() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return value.toInt();
     }
 
     @Override
     public String getValue() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return value.getValue();
     }
 
     public Spreadsheet getSpreadsheet() {
         return spreadsheet;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getKey() {
+        return key;
     }
 }
