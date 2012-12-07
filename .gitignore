@@ -1,0 +1,17 @@
+# Java Classes
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+
+# OSX specific files
+.DS_Store
+
+# IntelliJ files
+.idea/
+*.iml
