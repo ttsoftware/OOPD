@@ -1,4 +1,17 @@
-src/main/main.iml
-src/test/test.iml
+# Java Classes
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+
+# OSX specific files
+.DS_Store
+
+# IntelliJ files
 .idea/
-out/
+*.iml
