@@ -3,7 +3,8 @@ import org.junit.Test;
 public class Main {
 
     @Test
-    public void testSpreadsheet() {
+    public void test() {
         DIKUTest.main(null);
+
     }
 }
