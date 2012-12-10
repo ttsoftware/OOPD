@@ -17,9 +17,11 @@ public class DynamicArrayMap {
     }
 
     public Expression lookup(final Position key) {
-        for (Node node : nodes)
-            if (node.getKey().isEqualTo(key))
+        for (Node node : nodes) {
+            if (node.getKey().isEqualTo(key)) {
                 return node.getValue();
+            }
+        }
         return null;
     }
 }

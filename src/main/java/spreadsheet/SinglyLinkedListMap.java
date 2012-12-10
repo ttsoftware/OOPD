@@ -17,8 +17,9 @@ public class SinglyLinkedListMap {
     public Expression lookup(final Position key) {
         Node node = head;
         while (node != null) {
-            if (node.getKey().isEqualTo(key))
+            if (node.getKey().isEqualTo(key)) {
                 return node.getValue();
+            }
             node = node.getNext();
         }
         return null;
