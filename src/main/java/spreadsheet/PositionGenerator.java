@@ -1,6 +1,7 @@
-package quickcheck;
+package spreadsheet;
 
-import spreadsheet.Position;
+import quickcheck.Generator;
+import quickcheck.IntegerGenerator;
 
 public class PositionGenerator extends Generator<Position> {
 
