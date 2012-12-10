@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class Values<T> implements Iterable<T> {
 
-    private ArrayList<T> list = new ArrayList<T>(10);
+    private final ArrayList<T> list = new ArrayList<T>(10);
 
     public Values(Generator<T> generator) {
         for (int i = 0; i < 10; i++)
