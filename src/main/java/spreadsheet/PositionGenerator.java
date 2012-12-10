@@ -20,12 +20,4 @@ public final class PositionGenerator extends Generator<PositionInfo> {
 
         return new PositionInfo(position, column, row);
     }
-
-    public IntegerGenerator getColumnGen() {
-        return columnGen;
-    }
-
-    public IntegerGenerator getRowGen() {
-        return rowGen;
-    }
 }

@@ -31,6 +31,6 @@ public class ExpressionGenerator extends Generator<ExpressionInfo> {
 
     @Override
     public ExpressionInfo next() {
-        return new ExpressionInfo(expression);
+        return new ExpressionInfo(expression, new Random().nextInt(), new Random().nextBoolean(), Integer.toString(new Random().nextInt()));
     }
 }
