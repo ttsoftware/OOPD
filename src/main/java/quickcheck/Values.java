@@ -5,10 +5,11 @@ import java.util.Iterator;
 
 public class Values<T> implements Iterable<T> {
 
-    private ArrayList<T> list = new ArrayList<T>(1);
+    private ArrayList<T> list = new ArrayList<T>(10);
 
     public Values(Generator<T> generator) {
-        list.add(generator.next());
+        for (int i = 0; i < 10; i++)
+            list.add(generator.next());
     }
 
     @Override
