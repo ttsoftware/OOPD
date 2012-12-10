@@ -1,9 +1,9 @@
 import org.junit.Test;
 
-public class Main {
+public class A3 {
 
     @Test
-    public void testSpreadsheet() {
+    public void dikuTest() {
         DIKUTest.main(null);
     }
 }

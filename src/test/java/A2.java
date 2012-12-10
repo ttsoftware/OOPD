@@ -4,7 +4,7 @@ import spreadsheet.textual.TConst;
 
 import static org.junit.Assert.assertTrue;
 
-public class TestA2 {
+public class A2 {
 
     @Test
     public void testSpreadsheet() {
