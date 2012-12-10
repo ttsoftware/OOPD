@@ -2,10 +2,35 @@ package spreadsheet;
 
 import quickcheck.Generator;
 
-public class ExpressionGenerator extends Generator<Expression> {
+import java.util.Random;
+
+public class ExpressionGenerator extends Generator<ExpressionInfo> {
+
+    private final Expression expression;
+
+    public ExpressionGenerator() {
+
+        expression = new Expression() {
+
+            @Override
+            public boolean toBoolean() {
+                return new Random().nextBoolean();
+            }
+
+            @Override
+            public int toInt() {
+                return new Random().nextInt();
+            }
+
+            @Override
+            public String toString() {
+                return Integer.toString(new Random().nextInt());
+            }
+        };
+    }
 
     @Override
-    public Expression next() {
-        return null;
+    public ExpressionInfo next() {
+        return new ExpressionInfo(expression);
     }
 }
