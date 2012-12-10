@@ -4,7 +4,6 @@ public class Main {
 
     @Test
     public void test() {
-        DIKUTest.main(null);
-
+        //
     }
 }

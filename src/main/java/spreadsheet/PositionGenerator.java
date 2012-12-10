@@ -3,7 +3,7 @@ package spreadsheet;
 import quickcheck.Generator;
 import quickcheck.IntegerGenerator;
 
-public class PositionGenerator extends Generator<Position> {
+public final class PositionGenerator extends Generator<PositionInfo> {
 
     private final IntegerGenerator columnGen, rowGen;
 
@@ -12,8 +12,20 @@ public class PositionGenerator extends Generator<Position> {
         this.rowGen = new IntegerGenerator();
     }
 
-    @Override
-    public Position next() {
-        return new Position(columnGen.next(), rowGen.next());
+    public PositionInfo next() {
+
+        final int column = this.columnGen.next();
+        final int row = this.rowGen.next();
+        final Position position = new Position(column, row);
+
+        return new PositionInfo(position, column, row);
+    }
+
+    public IntegerGenerator getColumnGen() {
+        return columnGen;
+    }
+
+    public IntegerGenerator getRowGen() {
+        return rowGen;
     }
 }
