@@ -19,5 +19,4 @@ public final class IntegerGenerator extends Generator<Integer> {
     public Integer next() {
         return this.random.nextInt(this.range) + this.min;
     }
-
 }
