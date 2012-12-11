@@ -1,3 +1,5 @@
+package tests;
+
 import quickcheck.Values;
 import spreadsheet.PositionGenerator;
 import spreadsheet.PositionInfo;

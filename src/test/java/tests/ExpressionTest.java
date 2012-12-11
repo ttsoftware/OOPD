@@ -1,3 +1,5 @@
+package tests;
+
 import quickcheck.Values;
 import spreadsheet.ExpressionGenerator;
 import spreadsheet.ExpressionInfo;

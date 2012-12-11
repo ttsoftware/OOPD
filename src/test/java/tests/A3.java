@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Test;
 import spreadsheet.CellReference;
 import spreadsheet.Expression;
