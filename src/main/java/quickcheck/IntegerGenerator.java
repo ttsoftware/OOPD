@@ -1,9 +1,23 @@
 package quickcheck;
 
-public class IntegerGenerator extends Generator<Integer> {
+public final class IntegerGenerator extends Generator<Integer> {
 
-    @Override
-    public Integer next() {
-        return getRandom().nextInt();
+    private static final int DEFAULT_MIN = -1000;
+    private static final int DEFAULT_MAX = 1000;
+    private int min;
+    private int range;
+
+    public IntegerGenerator() {
+        this(DEFAULT_MIN, DEFAULT_MAX);
     }
+
+    public IntegerGenerator(final int min, final int max) {
+        this.min = min;
+        this.range = Math.abs(min - max) + 1;
+    }
+
+    public Integer next() {
+        return this.random.nextInt(this.range) + this.min;
+    }
+
 }
