@@ -7,7 +7,6 @@ import java.util.Random;
 public class ExpressionGenerator extends Generator<ExpressionInfo> {
 
     private final Expression expression;
-
     private final int intGen = new Random().nextInt();
     private final boolean boolGen = new Random().nextBoolean();
     private final String stringGen = Integer.toString(new Random().nextInt());
