@@ -20,7 +20,23 @@ public class ExpressionTest {
 
         for (final ExpressionInfo info : infos) {
 
-            // ???
+            final int expectedInt = info.getInt();
+            final boolean expectedBool = info.getBool();
+            final String expectedString = info.getString();
+
+            final int actualInt = info.getValue().toInt();
+            final boolean actualBool = info.getValue().toBoolean();
+            final String actualString = info.getValue().toString();
+
+            if (actualInt != expectedInt) {
+                System.err.println("getInt() failed. " + info);
+            }
+            if (actualBool != expectedBool) {
+                System.err.println("getBool() failed. " + info);
+            }
+            if (!actualString.equals(expectedString)) {
+                System.err.println("getString() failed. " + info);
+            }
         }
     }
 }

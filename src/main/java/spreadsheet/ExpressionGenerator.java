@@ -8,29 +8,33 @@ public class ExpressionGenerator extends Generator<ExpressionInfo> {
 
     private final Expression expression;
 
+    private final int intGen = new Random().nextInt();
+    private final boolean boolGen = new Random().nextBoolean();
+    private final String stringGen = Integer.toString(new Random().nextInt());
+
     public ExpressionGenerator() {
 
         expression = new Expression() {
 
             @Override
             public boolean toBoolean() {
-                return new Random().nextBoolean();
+                return boolGen;
             }
 
             @Override
             public int toInt() {
-                return new Random().nextInt();
+                return intGen;
             }
 
             @Override
             public String toString() {
-                return Integer.toString(new Random().nextInt());
+                return stringGen;
             }
         };
     }
 
     @Override
     public ExpressionInfo next() {
-        return new ExpressionInfo(expression, new Random().nextInt(), new Random().nextBoolean(), Integer.toString(new Random().nextInt()));
+        return new ExpressionInfo(expression, intGen, boolGen, stringGen);
     }
 }
