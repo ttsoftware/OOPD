@@ -11,7 +11,7 @@ public class Values<T> implements Iterable<T> {
         this(generator, 10);
     }
 
-    public Values(Generator<T> generator, Integer count) {
+    public Values(Generator<T> generator, int count) {
         list = new ArrayList<T>(count);
         for (int i = 0; i < count; i++) {
             list.add(generator.next());
