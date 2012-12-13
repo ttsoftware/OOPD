@@ -2,7 +2,7 @@ package spreadsheet;
 
 import quickcheck.Info;
 
-public class PositionInfo extends Info<Position> {
+public final class PositionInfo extends Info<Position> {
 
     private final int column, row;
 
@@ -22,6 +22,6 @@ public class PositionInfo extends Info<Position> {
 
     @Override
     public String toString() {
-        return String.format("new Position(%d, %d)", this.column, this.row);
+        return String.format("new Position(%d, %d)", column, row);
     }
 }

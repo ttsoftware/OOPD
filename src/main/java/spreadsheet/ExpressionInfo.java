@@ -29,6 +29,6 @@ public class ExpressionInfo extends Info<Expression> {
 
     @Override
     public String toString() {
-        return getValue().toString();
+        return exString;
     }
 }
