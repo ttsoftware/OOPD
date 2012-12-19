@@ -16,6 +16,6 @@ public class GetCommand extends Command {
     public void execute() {
 
         Expression expression = Application.instance.getWorksheet().get(position);
-        Application.instance.print(expression.toString());
+        System.out.println(expression.toString());
     }
 }

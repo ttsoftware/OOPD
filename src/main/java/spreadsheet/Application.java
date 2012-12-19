@@ -24,10 +24,6 @@ public final class Application {
         System.exit(0);
     }
 
-    public void print(final String output) {
-        System.out.println(output);
-    }
-
     public void newSpreadsheet() {
         Spreadsheet spreadsheet = new Spreadsheet();
         spreadsheets.add(spreadsheet);

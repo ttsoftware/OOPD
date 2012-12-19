@@ -1,5 +1,6 @@
 package tests;
 
+import com.sun.deploy.util.StringUtils;
 import org.junit.Test;
 import spreadsheet.Expression;
 import spreadsheet.arithmetic.Add;
@@ -25,16 +26,18 @@ public class TestSetCommand {
             int column = Integer.parseInt(matcher.group(2));
             String expressionCycle = matcher.group(3);
 
+            String[] words = expressionCycle.split(" ");
+            expressionCycle = "";
+
+            for (String word : words) {
+                expressionCycle = word + " " + expressionCycle;
+            }
+
             System.out.println(row);
             System.out.println(column);
             System.out.println(expressionCycle);
 
-            String[] cycle = expressionCycle.split("\\s");
-
-            System.out.println(Arrays.toString(cycle));
-
             StringTokenizer c = new StringTokenizer(expressionCycle, " ");
-
 
             System.out.println(recurMatch(c.nextToken(), c));
         }
@@ -48,20 +51,7 @@ public class TestSetCommand {
         }
         else {
 
-            try {
-                Class c = Class.forName("spreadsheet.arithmetic." + ex);
 
-                Constructor<Expression> con = c.getConstructor(Integer.class);
-
-                Expression expression = (Expression) con.newInstance(
-                        recurMatch(cycle.nextToken(), cycle)
-                );
-
-                return expression;
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
         return null;
