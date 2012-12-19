@@ -25,15 +25,13 @@ public final class Application {
     }
 
     public void newSpreadsheet() {
-        Spreadsheet spreadsheet = new Spreadsheet();
-        spreadsheets.add(spreadsheet);
+        spreadsheets.add(new Spreadsheet());
     }
 
     public void changeWorkSheet(final String name) {
         try {
             setWorksheet(getSpreadsheet(name));
-        }
-        catch (NoSuchSpreadsheetException e) {
+        } catch (NoSuchSpreadsheetException e) {
             // Gør noget relevant, f.eks. fortæl brugeren at det spreadsheet ikke findes
             e.printStackTrace();
         }

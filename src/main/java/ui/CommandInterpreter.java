@@ -20,8 +20,8 @@ public final class CommandInterpreter {
         switch (keyword) {
             case "pws": // print current worksheet
                 return new PwsCommand();
-            case "ns": // initialize new worksheet
-                return null;
+            case "ns": // initialize new spreadsheet
+                return new NsCommand();
             case "ls": // list spreadsheets
                 return new LsCommand();
             case "cws": // change worksheet
