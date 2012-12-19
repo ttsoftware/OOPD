@@ -44,26 +44,6 @@ public final class CommandInterpreter {
                 int column = Integer.parseInt(matcher.group(2));
                 String expressionCycle = matcher.group(3);
 
-                StringTokenizer tokenizer = new StringTokenizer(expressionCycle, " ");
-
-                TreeSet<Expression> expressions = new TreeSet<Expression>();
-
-                while (tokenizer.hasMoreTokens()) {
-
-                    String className = tokenizer.nextToken();
-                    Object parameter = tokenizer.nextElement();
-
-                    try {
-                        Class c = Class.forName(className);
-                        Constructor co = c.getConstructor();
-                        Expression ex = (Expression) co.newInstance(parameter);
-                        expressions.add(ex);
-                    }
-                    catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-
                 return new SetCommand();
             }
             case "get": { // gets the expression at the give position in the worksheet

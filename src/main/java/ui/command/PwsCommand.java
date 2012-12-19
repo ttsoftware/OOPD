@@ -10,6 +10,6 @@ public class PwsCommand extends Command {
         // Should we print the worksheet as ASCII art?
 
         String worksheetName = Application.instance.getWorksheet().getName();
-        Application.instance.print(worksheetName);
+        System.out.println(worksheetName);
     }
 }
