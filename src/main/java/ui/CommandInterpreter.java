@@ -23,7 +23,7 @@ public final class CommandInterpreter {
             case "ns": // initialize new worksheet
                 return null;
             case "ls": // list spreadsheets
-                return null;
+                return new LsCommand();
             case "cws": // change worksheet
                 return null;
             case "set": { // sets the given expression at a given position in the worksheet
