@@ -1,8 +1,6 @@
-import java.io.PrintStream;
-import java.io.InputStream;
-import java.util.Scanner;
-
 import ui.CommandInterpreter;
+
+import java.util.Scanner;
 
 final class Interpreter {
 

@@ -9,7 +9,7 @@ public class Spreadsheet {
     public Spreadsheet() {
         count++;
         map = new SinglyLinkedListMap();
-        this.name = "Sheet" + Integer.toString(count);
+        this.name = "Sheet" + count;
     }
 
     public void set(final Position position, final Expression expression) {
