@@ -1,59 +1,78 @@
 package tests;
 
-import com.sun.deploy.util.StringUtils;
 import org.junit.Test;
-import spreadsheet.Expression;
-import spreadsheet.arithmetic.Add;
+import spreadsheet.Application;
+import spreadsheet.NoSuchSpreadsheetException;
+import spreadsheet.Position;
+import spreadsheet.Spreadsheet;
+import spreadsheet.arithmetic.AConst;
+import ui.command.SetCommand;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestSetCommand {
 
     @Test
-    public void Test() {
+    public void test1() throws NoSuchSpreadsheetException {
 
-        String input = "1 0 Add AConst 4 AConst 5";
-        Pattern pattern = Pattern.compile("([0-9])\\s([0-9])\\s(.*?)");
-        Matcher matcher = pattern.matcher(input);
+        Application.instance.newSpreadsheet();
 
-        if (matcher.matches()) {
+        String input = "0 0 Neg Add AConst 4 AConst 5";
 
-            int row = Integer.parseInt(matcher.group(1));
-            int column = Integer.parseInt(matcher.group(2));
-            String expressionCycle = matcher.group(3);
+        SetCommand setCommand = new SetCommand(input);
+        setCommand.execute();
 
-            String[] words = expressionCycle.split(" ");
-            expressionCycle = "";
+        input = "1 1 Add AConst 3 CellReference Sheet0 0 0";
 
-            for (String word : words) {
-                expressionCycle = word + " " + expressionCycle;
-            }
+        setCommand = new SetCommand(input);
+        setCommand.execute();
 
-            System.out.println(row);
-            System.out.println(column);
-            System.out.println(expressionCycle);
+        Spreadsheet sp = Application.instance.getSpreadsheet("Sheet0");
 
-            StringTokenizer c = new StringTokenizer(expressionCycle, " ");
+        AConst p1 = (AConst) sp.get(new Position(0, 0));
+        AConst p2 = (AConst) sp.get(new Position(1, 1));
 
-            System.out.println(recurMatch(c.nextToken(), c));
-        }
+        assertEquals(p1.toInt(), -9);
+        assertEquals(p2.toInt(), -6);
     }
 
-    public Expression recurMatch(String ex, StringTokenizer cycle) {
+    @Test
+    public void test2() throws NoSuchSpreadsheetException {
 
-        if (ex.matches("\\d")) {
+        Application.instance.newSpreadsheet();
 
-            return recurMatch(cycle.nextToken(), cycle);
+        String input = "0 0 Neg Add AConst 4 AConst 5";
+
+        SetCommand setCommand = new SetCommand(input);
+        setCommand.execute();
+
+        input = "1 1 Add CellReference Sheet0 0 0 Add Neg AConst -6 Neg AConst 3";
+
+        setCommand = new SetCommand(input);
+        setCommand.execute();
+
+        Spreadsheet sp = Application.instance.getSpreadsheet("Sheet0");
+
+        AConst p1 = (AConst) sp.get(new Position(0, 0));
+        AConst p2 = (AConst) sp.get(new Position(1, 1));
+
+        assertEquals(p1.toInt(), -9);
+        assertEquals(p2.toInt(), -6);
+    }
+
+    @Test
+    public void testCreateSheet() {
+
+        Application.instance.newSpreadsheet();
+        Application.instance.newSpreadsheet();
+
+        try {
+            Spreadsheet sp1 = Application.instance.getSpreadsheet("Sheet0");
+            Spreadsheet sp2 = Application.instance.getSpreadsheet("Sheet1");
         }
-        else {
-
-
+        catch (NoSuchSpreadsheetException e) {
+            e.printStackTrace();
         }
-
-        return null;
     }
 }

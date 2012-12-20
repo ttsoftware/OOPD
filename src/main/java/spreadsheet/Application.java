@@ -16,7 +16,7 @@ public final class Application {
 
     private Application() {
         this.worksheet = new Spreadsheet();
-        this.spreadsheets = new ArrayList<Spreadsheet>();
+        this.spreadsheets = new ArrayList<>();
         this.spreadsheets.add(this.worksheet);
     }
 
@@ -31,7 +31,8 @@ public final class Application {
     public void changeWorkSheet(final String name) {
         try {
             setWorksheet(getSpreadsheet(name));
-        } catch (NoSuchSpreadsheetException e) {
+        }
+        catch (NoSuchSpreadsheetException e) {
             // Gør noget relevant, f.eks. fortæl brugeren at det spreadsheet ikke findes
             e.printStackTrace();
         }
@@ -47,7 +48,7 @@ public final class Application {
     }
 
     public Iterable<String> listSpreadsheets() {
-        ArrayList<String> spreadsheetNames = new ArrayList<String>();
+        ArrayList<String> spreadsheetNames = new ArrayList<>();
         for (Spreadsheet spreadsheet : spreadsheets) {
             spreadsheetNames.add(spreadsheet.getName());
         }
