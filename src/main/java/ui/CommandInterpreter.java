@@ -30,8 +30,7 @@ public final class CommandInterpreter {
                 return new ChangeWorksheetCommand(name);
             }
             case "set": { // sets the given expression at a given position in the worksheet
-                String input = scanner.nextLine().trim();
-                return new SetCommand(input);
+                return new SetCommand(scanner);
             }
             case "get": { // gets the expression at the give position in the worksheet
                 int row = scanner.nextInt();

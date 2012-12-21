@@ -8,6 +8,8 @@ import spreadsheet.Spreadsheet;
 import spreadsheet.arithmetic.AConst;
 import ui.command.SetCommand;
 
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -20,12 +22,12 @@ public class TestSetCommand {
 
         String input = "0 0 Neg Add AConst 4 AConst 5";
 
-        SetCommand setCommand = new SetCommand(input);
+        SetCommand setCommand = new SetCommand(new Scanner(input));
         setCommand.execute();
 
         input = "1 1 Add AConst 3 CellReference Sheet0 0 0";
 
-        setCommand = new SetCommand(input);
+        setCommand = new SetCommand(new Scanner(input));
         setCommand.execute();
 
         Spreadsheet sp = Application.instance.getSpreadsheet("Sheet0");
@@ -44,12 +46,12 @@ public class TestSetCommand {
 
         String input = "0 0 Neg Add AConst 4 AConst 5";
 
-        SetCommand setCommand = new SetCommand(input);
+        SetCommand setCommand = new SetCommand(new Scanner(input));
         setCommand.execute();
 
         input = "1 1 Add CellReference Sheet0 0 0 Add Neg AConst -6 Neg AConst 3";
 
-        setCommand = new SetCommand(input);
+        setCommand = new SetCommand(new Scanner(input));
         setCommand.execute();
 
         Spreadsheet sp = Application.instance.getSpreadsheet("Sheet0");

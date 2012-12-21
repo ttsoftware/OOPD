@@ -8,71 +8,57 @@ import spreadsheet.arithmetic.Neg;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SetCommand extends Command {
 
-    private String input;
+    private Scanner scanner;
 
-    public SetCommand(final String input) {
-        this.input = input;
+    public SetCommand(final Scanner scanner) {
+        this.scanner = scanner;
     }
 
     @Override
     public void execute() {
 
-        Pattern pattern = Pattern.compile("([0-9])\\s([0-9])\\s(.*?)");
-        Matcher matcher = pattern.matcher(input);
+        int column = scanner.nextInt();
+        int row = scanner.nextInt();
 
-        if (matcher.matches()) {
-
-            int column = Integer.parseInt(matcher.group(1));
-            int row = Integer.parseInt(matcher.group(2));
-            String expressionCycle = matcher.group(3);
-
-            ArrayList<String> c = new ArrayList<>();
-            Collections.addAll(c, expressionCycle.split("\\s"));
-
-            Iterator i = c.iterator();
-
-            try {
-                Expression e = recurEval(i);
-                Spreadsheet sp = Application.instance.getWorksheet();
-                sp.set(new Position(column, row), e);
-            }
-            catch (NoSuchSpreadsheetException e1) {
-                e1.printStackTrace();
-            }
+        try {
+            Expression e = recurEval(scanner);
+            Spreadsheet sp = Application.instance.getWorksheet();
+            sp.set(new Position(column, row), e);
         }
-        else {
-            throw new IllegalArgumentException("Invalid set command");
+        catch (NoSuchSpreadsheetException e1) {
+            e1.printStackTrace();
         }
     }
 
-    public Expression recurEval(Iterator i) throws NoSuchSpreadsheetException {
+    public Expression recurEval(Scanner scanner) throws NoSuchSpreadsheetException {
 
-        String token = (String) i.next();
+        String token = scanner.next();
 
         switch (token) {
             case "AConst": {
-                int arg = Integer.parseInt((String) i.next());
+                int arg = scanner.nextInt();
                 return new AConst(arg);
             }
             case "Add": {
-                Expression arg1 = recurEval(i);
-                Expression arg2 = recurEval(i);
+                Expression arg1 = recurEval(scanner);
+                Expression arg2 = recurEval(scanner);
                 return new Add(arg1, arg2);
             }
             case "Neg": {
-                Expression arg = recurEval(i);
+                Expression arg = recurEval(scanner);
                 return new Neg(arg);
             }
             case "CellReference": {
 
-                String name = (String) i.next();
-                int column = Integer.parseInt((String) i.next());
-                int row = Integer.parseInt((String) i.next());
+                String name = scanner.next();
+                int column = scanner.nextInt();
+                int row = scanner.nextInt();
 
                 Spreadsheet sp = Application.instance.getSpreadsheet(name);
 
