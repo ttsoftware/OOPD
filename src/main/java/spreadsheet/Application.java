@@ -11,6 +11,7 @@ public final class Application {
 
     private ArrayList<Spreadsheet> spreadsheets;
     private Spreadsheet worksheet;
+    private ArrayList<String> state = new ArrayList<>();
 
     public static final Application instance = new Application();
 
@@ -61,5 +62,17 @@ public final class Application {
 
     public void setWorksheet(Spreadsheet worksheet) {
         this.worksheet = worksheet;
+    }
+
+    public ArrayList<String> getState() {
+        return state;
+    }
+
+    public void setState(ArrayList<String> state) {
+        this.state = state;
+    }
+
+    public void appendState(String command) {
+        state.add(command);
     }
 }

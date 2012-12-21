@@ -36,18 +36,14 @@ public class SetCommand extends Command {
 
             Iterator i = c.iterator();
 
-            Expression e = null;
-
             try {
-                e = recurEval(i);
+                Expression e = recurEval(i);
+                Spreadsheet sp = Application.instance.getWorksheet();
+                sp.set(new Position(column, row), e);
             }
             catch (NoSuchSpreadsheetException e1) {
                 e1.printStackTrace();
             }
-
-            Spreadsheet sp = Application.instance.getWorksheet();
-
-            sp.set(new Position(column, row), e);
         }
     }
 
