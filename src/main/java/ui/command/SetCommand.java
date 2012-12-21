@@ -45,6 +45,9 @@ public class SetCommand extends Command {
                 e1.printStackTrace();
             }
         }
+        else {
+            throw new IllegalArgumentException("Invalid set command");
+        }
     }
 
     public Expression recurEval(Iterator i) throws NoSuchSpreadsheetException {
@@ -76,7 +79,7 @@ public class SetCommand extends Command {
                 return new CellReference(sp, new Position(column, row));
             }
             default: {
-                return null;
+                throw new IllegalArgumentException("No such expression exist.");
             }
         }
     }

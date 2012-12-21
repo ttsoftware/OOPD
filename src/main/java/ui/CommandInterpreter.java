@@ -1,13 +1,9 @@
 package ui;
 
-import spreadsheet.Application;
 import spreadsheet.Position;
 import ui.command.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public final class CommandInterpreter {
 
@@ -30,15 +26,17 @@ public final class CommandInterpreter {
                 return new LsCommand();
             }
             case "cws": { // change worksheet
-                return null;
+                String name = scanner.next();
+                return new ChangeWorksheetCommand(name);
             }
             case "set": { // sets the given expression at a given position in the worksheet
                 String input = scanner.nextLine().trim();
                 return new SetCommand(input);
             }
             case "get": { // gets the expression at the give position in the worksheet
-                String input = scanner.nextLine().trim();
-                return new GetCommand(input);
+                int row = scanner.nextInt();
+                int column = scanner.nextInt();
+                return new GetCommand(new Position(row, column));
             }
             case "save": {
                 String filename = scanner.nextLine().trim();
@@ -46,7 +44,7 @@ public final class CommandInterpreter {
             }
             case "load": {
                 String filename = scanner.nextLine().trim();
-
+                return new LoadCommand(filename);
             }
             case "exit": {
                 return new ExitCommand();

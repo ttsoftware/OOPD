@@ -19,7 +19,6 @@ final class Interpreter {
         while (true) {
             System.out.print("> ");
             command = this.scanner.nextLine();
-            Application.instance.appendState(command);
             try {
                 CommandInterpreter.interpret(new Scanner(command)).execute();
             }
@@ -27,6 +26,7 @@ final class Interpreter {
                 // Dette er faktisk en løsning på cykliske expressions, om end ikke særlig køn.
                 System.out.println("Cyclic Expression");
             }
+            Application.instance.appendState(command);
         }
     }
 

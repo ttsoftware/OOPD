@@ -1,6 +1,9 @@
 package spreadsheet;
 
+import ui.CommandInterpreter;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A singleton class representing a spreadsheet application.
@@ -9,9 +12,9 @@ import java.util.ArrayList;
  */
 public final class Application {
 
+    private ArrayList<String> state = new ArrayList<>();
     private ArrayList<Spreadsheet> spreadsheets;
     private Spreadsheet worksheet;
-    private ArrayList<String> state = new ArrayList<>();
 
     public static final Application instance = new Application();
 
@@ -69,10 +72,15 @@ public final class Application {
     }
 
     public void setState(ArrayList<String> state) {
-        this.state = state;
+        for (String command : state) {
+            appendState(command);
+            CommandInterpreter.interpret(new Scanner(command)).execute();
+        }
     }
 
     public void appendState(String command) {
-        state.add(command);
+        if (!command.contains("save")) {
+            state.add(command);
+        }
     }
 }
