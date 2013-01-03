@@ -4,31 +4,27 @@ import quickcheck.Info;
 
 public class ExpressionInfo extends Info<Expression> {
 
-    private final int exInt;
-    private final boolean exBool;
-    private final String exString;
+    private final int integer;
 
-    public ExpressionInfo(Expression value, int exInt, boolean exBool, String exString) {
-        super(value);
-        this.exInt = exInt;
-        this.exBool = exBool;
-        this.exString = exString;
+    public ExpressionInfo(Expression expression, int integer) {
+        super(expression);
+        this.integer = integer;
     }
 
     public int getInt() {
-        return exInt;
+        return integer;
     }
 
     public boolean getBool() {
-        return exBool;
+        return integer != 0;
     }
 
     public String getString() {
-        return exString;
+        return Integer.toString(integer);
     }
 
     @Override
     public String toString() {
-        return "Expression: " + exString;
+        return Integer.toString(integer);
     }
 }

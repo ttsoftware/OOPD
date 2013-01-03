@@ -20,14 +20,27 @@ public class ExpressionTest {
 
         for (final ExpressionInfo info : infos) {
 
-            final int expected = info.getInt();
-            final int actual = info.getValue().toInt();
+            // Integer
+            final int expectedInt = info.getInt();
+            final int actualInt = info.getValue().toInt();
 
-            if (actual == expected) {
-                continue;
+            // Boolean
+            final boolean expectedBool = info.getBool();
+            final boolean actualBool = info.getValue().toBoolean();
+
+            // String
+            final String expectedString = info.getString();
+            final String actualString = info.getString();
+
+            if (!(expectedInt == actualInt)) {
+                System.err.println("getInt() failed. " + info.getInt());
             }
-
-            System.err.println("gelInt() failed. " + info);
+            if (!(expectedBool == actualBool)) {
+                System.err.println("getBool() failed. " + info.getBool());
+            }
+            if (!(expectedString.equals(actualString))) {
+                System.err.println("getString() failed. " + info.getString());
+            }
         }
     }
 }
