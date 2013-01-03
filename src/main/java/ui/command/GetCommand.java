@@ -14,7 +14,6 @@ public class GetCommand extends Command {
 
     @Override
     public void execute() {
-
         Expression expression = Application.instance.getWorksheet().get(position);
         System.out.println(expression);
     }

@@ -5,12 +5,7 @@ import spreadsheet.arithmetic.AConst;
 import spreadsheet.arithmetic.Add;
 import spreadsheet.arithmetic.Neg;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SetCommand extends Command {
 
@@ -30,8 +25,7 @@ public class SetCommand extends Command {
             Expression e = recurEval(scanner);
             Spreadsheet sp = Application.instance.getWorksheet();
             sp.set(new Position(column, row), e);
-        }
-        catch (NoSuchSpreadsheetException e1) {
+        } catch (NoSuchSpreadsheetException e1) {
             e1.printStackTrace();
         }
     }
