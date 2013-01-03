@@ -1,39 +1,22 @@
 package spreadsheet;
 
 import quickcheck.Generator;
-
-import java.util.Random;
+import quickcheck.IntegerGenerator;
+import spreadsheet.arithmetic.AConst;
 
 public class ExpressionGenerator extends Generator<ExpressionInfo> {
 
-    private final Expression expression;
-    private final int intGen = new Random().nextInt();
-    private final boolean boolGen = new Random().nextBoolean();
-    private final String stringGen = Integer.toString(new Random().nextInt());
+    private final IntegerGenerator intGen;
 
     public ExpressionGenerator() {
-
-        expression = new Expression() {
-
-            @Override
-            public boolean toBoolean() {
-                return boolGen;
-            }
-
-            @Override
-            public int toInt() {
-                return intGen;
-            }
-
-            @Override
-            public String toString() {
-                return stringGen;
-            }
-        };
+        this.intGen = new IntegerGenerator();
     }
 
     @Override
     public ExpressionInfo next() {
-        return new ExpressionInfo(expression, intGen, boolGen, stringGen);
+        final int integer = this.intGen.next();
+        final Expression expression = new AConst(integer);
+
+        return new ExpressionInfo(expression, integer, (integer != 0), String.valueOf(integer));
     }
 }
